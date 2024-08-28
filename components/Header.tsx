@@ -10,9 +10,9 @@ const Header = () => {
       </Link>
 
       <section className="flex items-center justify-between w-full sm:basis-3/5">
-        <h2 className="md:text-2xl text-base underline underline-offset-8 italic font-semibold">
+        <h1 className="md:text-2xl text-base underline underline-offset-8 italic font-semibold">
           Product Catalogue
-        </h2>
+        </h1>
 
         <Button link="/add" className="ml-auto text-nowrap">
           Add Product
