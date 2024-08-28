@@ -1,4 +1,3 @@
-import { ButtonProps } from "@/types";
 import Link from "next/link";
 
 const Button = ({ link, children, className }: ButtonProps) => {

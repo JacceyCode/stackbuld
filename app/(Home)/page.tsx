@@ -1,22 +1,9 @@
-import ProductCard from "@/components/ProductCard";
+import ProductContainer from "@/components/ProductContainer";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <main className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 place-items-center">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+    <main className="md:p-6 p-4">
+      <ProductContainer />
     </main>
   );
 }

@@ -1,27 +1,30 @@
 import Image from "next/image";
 import Button from "./Button";
 
-const ProductCard = () => {
+const ProductCard = ({ id, image, price, title }: ProductCardProps) => {
   return (
     <section className="bg-background2 rounded-md shadow-md shadow-background w-full justify-between flex flex-col max-w-96 border-background2">
-      <section className="h-48 relative rounded-t-md">
+      <section className="h-60 aspect-video relative rounded-t-md">
         <Image
-          src={"/logo.png"}
+          src={image || "/logo.png"}
           fill
-          alt="Product Image"
+          alt={`${title} Image`}
           className="object-contain"
+          quality={80}
         />
       </section>
 
-      <section className="bg-white rounded-b-md p-2 space-y-4">
-        <section className="flex items-center justify-between">
-          <h3 className="font-semibold text-lg">Product</h3>
-          <p className="font-bold text-xl">$100</p>
+      <section className="bg-white rounded-b-md p-2 space-y-4 justify-between flex flex-col">
+        <section className="flex items-end justify-between gap-4">
+          <h3 className="font-medium text-lg">
+            {title.slice(0, 8) || "Product name"}
+          </h3>
+          <p className="font-bold text-xl">${price || "0.00"}</p>
         </section>
 
         <section className="flex items-center justify-between flex-wrap gap-3">
           <Button
-            link="/details"
+            link={`/${id}`}
             className="hover:bg-transparent hover:text-black text-white bg-background"
           >
             View
@@ -29,7 +32,7 @@ const ProductCard = () => {
 
           <section className="flex items-center gap-2">
             <Button
-              link="/details/123"
+              link={`/${id}/edit`}
               className="hover:bg-background hover:text-white"
             >
               Edit
