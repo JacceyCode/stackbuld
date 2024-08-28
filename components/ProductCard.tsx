@@ -19,10 +19,10 @@ const ProductCard = () => {
           <p className="font-bold text-xl">$100</p>
         </section>
 
-        <section className="flex items-center justify-between">
+        <section className="flex items-center justify-between flex-wrap gap-3">
           <Button
             link="/details"
-            className="hover:bg-transparent hover:text-black"
+            className="hover:bg-transparent hover:text-black text-white bg-background"
           >
             View
           </Button>
@@ -30,7 +30,7 @@ const ProductCard = () => {
           <section className="flex items-center gap-2">
             <Button
               link="/details/123"
-              className="bg-transparent text-background hover:bg-background hover:text-white"
+              className="hover:bg-background hover:text-white"
             >
               Edit
             </Button>

@@ -4,20 +4,20 @@ import Button from "./Button";
 
 const Header = () => {
   return (
-    <header className="bg-background2 px-4 py-2 flex flex-col sm:flex-row items-center justify-center gap-2">
-      <section className="flex items-center justify-between w-full">
-        <Link href={"/"} className="">
-          <Logo />
-        </Link>
+    <header className="bg-background2 px-4 py-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <Link href={"/"} className="sm:basis-2/5">
+        <Logo />
+      </Link>
 
-        <h2 className="md:text-xl text-sm underline underline-offset-8 italic font-semibold sm:mx-auto">
+      <section className="flex items-center justify-between w-full sm:basis-3/5">
+        <h2 className="md:text-2xl text-base underline underline-offset-8 italic font-semibold">
           Product Catalogue
         </h2>
-      </section>
 
-      <Button link="/add" className="ml-auto text-nowrap">
-        Add Product
-      </Button>
+        <Button link="/add" className="ml-auto text-nowrap">
+          Add Product
+        </Button>
+      </section>
     </header>
   );
 };
