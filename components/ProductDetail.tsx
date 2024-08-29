@@ -1,25 +1,25 @@
 "use client";
 
-import Image from "next/image";
-import Button from "./Button";
-import { useEffect, useState } from "react";
-import LoaderIcon from "./Loader";
-import { useRouter } from "next/navigation";
+import { deleteProduct, getProductsFromLocalStorage } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Button from "./Button";
+import DeleteButton from "./DeleteButton";
+import LoaderIcon from "./Loader";
 
 const ProductDetail = ({ productId }: ProductDetailProps) => {
   const router = useRouter();
   const [data, setData] = useState<Product | null>(null);
 
   useEffect(() => {
-    const localProduct = localStorage.getItem("products");
+    const localProduct: Product[] = getProductsFromLocalStorage();
 
     if (localProduct) {
-      const parsedProduct: Product[] = JSON.parse(localProduct);
+      const prod = localProduct.find((product) => product.id === +productId);
 
-      const prod = parsedProduct.find((product) => product.id === +productId);
-
-      if (prod) setData(prod);
+      !prod ? router.push("/") : setData(prod);
     } else {
       revalidatePath("/");
       router.push("/");
@@ -59,12 +59,13 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
             Edit
           </Button>
 
-          <Button
-            link="/"
-            className="bg-transparent text-background hover:bg-background hover:text-white"
-          >
-            Delete
-          </Button>
+          <DeleteButton
+            onClick={async () => {
+              await deleteProduct(data.id);
+              router.push("/");
+            }}
+            productId={data.id}
+          />
         </section>
       </section>
     </section>

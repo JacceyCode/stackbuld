@@ -1,7 +1,15 @@
+import { deleteProduct } from "@/lib/utils";
 import Image from "next/image";
 import Button from "./Button";
+import DeleteButton from "./DeleteButton";
 
-const ProductCard = ({ id, image, price, title }: ProductCardProps) => {
+const ProductCard = ({
+  id,
+  image,
+  price,
+  title,
+  setProducts,
+}: ProductCardProps) => {
   return (
     <section className="bg-background2 rounded-md shadow-md shadow-background w-full justify-between flex flex-col max-w-96 border-background2">
       <section className="h-60 aspect-video relative rounded-t-md">
@@ -37,12 +45,14 @@ const ProductCard = ({ id, image, price, title }: ProductCardProps) => {
             >
               Edit
             </Button>
-            <Button
-              link="/"
-              className="bg-transparent text-background hover:bg-background hover:text-white"
-            >
-              Delete
-            </Button>
+
+            <DeleteButton
+              onClick={async () => {
+                const newProducts = await deleteProduct(id);
+                setProducts(newProducts!);
+              }}
+              productId={id}
+            />
           </section>
         </section>
       </section>

@@ -1,4 +1,4 @@
-import { CSSProperties, ReactNode } from "react";
+import { CSSProperties, Dispatch, ReactNode, SetStateAction } from "react";
 
 global {
   declare interface ButtonProps {
@@ -18,9 +18,16 @@ global {
   }
 
   declare interface ProductCardProps
-    extends Pick<Product, "id" | "price" | "image" | "title"> {}
+    extends Pick<Product, "id" | "price" | "image" | "title"> {
+    setProducts: Dispatch<SetStateAction<Product[]>>;
+  }
 
   declare interface ProductDetailProps {
+    productId: number;
+  }
+
+  declare interface DeleteButtonProps {
+    onClick: (productId: number) => void;
     productId: number;
   }
 }

@@ -4,6 +4,10 @@ import { getProducts } from "@/lib/action";
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import LoaderIcon from "./Loader";
+import {
+  getProductsFromLocalStorage,
+  saveProductsToLocalStorage,
+} from "@/lib/utils";
 
 const ProductContainer = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -12,55 +16,60 @@ const ProductContainer = () => {
 
   const getProduct = async () => {
     setLoading(true);
+    setError(null);
     try {
       const fetchedProducts = await getProducts();
 
-      if (!fetchedProducts) throw Error();
+      if (!fetchedProducts || fetchedProducts.length === 0)
+        throw new Error("Failed to fetch products");
 
       setProducts(fetchedProducts);
-      localStorage.setItem("products", JSON.stringify(fetchedProducts));
-    } catch (error) {
-      throw error;
+      saveProductsToLocalStorage(fetchedProducts);
+    } catch (error: any) {
+      setError(error.message || "An unexpected error occured");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
-    try {
-      const storedProducts = localStorage.getItem("products");
+    const storedProducts = getProductsFromLocalStorage();
 
-      if (storedProducts) {
-        const parsedProducts = JSON.parse(storedProducts);
-        setProducts(parsedProducts);
-      } else {
-        getProduct();
-      }
-    } catch (error: any) {
-      setError(error.message);
-    } finally {
+    if (storedProducts) {
+      setProducts(storedProducts);
       setLoading(false);
+    } else {
+      getProduct();
     }
   }, []);
+
+  // const updateProducts = (newProducts: Product[]) => setProducts(newProducts);
 
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
       {loading ? (
         <LoaderIcon />
-      ) : products.length > 0 && !error ? (
-        products.map(({ id, image, price, title }: ProductCardProps) => (
+      ) : error ? (
+        <section className="w-screen flex items-center justify-center">
+          <p className="text-lg font-semibold">{error}</p>
+        </section>
+      ) : products.length > 0 ? (
+        products.map((product: Product) => (
           <ProductCard
-            id={id}
-            image={image}
-            price={price}
-            title={title}
-            key={id}
+            id={product.id}
+            image={product.image}
+            price={product.price}
+            title={product.title}
+            key={product.id}
+            setProducts={setProducts}
           />
         ))
       ) : (
-        <p className="text-lg font-semibold">{error}</p>
+        <section className="w-screen flex items-center justify-center">
+          <p className="text-lg font-semibold text-center">
+            No products found.
+          </p>
+        </section>
       )}
     </section>
   );
