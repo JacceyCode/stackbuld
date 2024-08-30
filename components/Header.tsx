@@ -14,7 +14,10 @@ const Header = () => {
           Product Catalogue
         </h1>
 
-        <Button link="/add" className="ml-auto text-nowrap">
+        <Button
+          link="/add"
+          className="ml-auto text-nowrap hover:bg-background hover:text-white"
+        >
           Add Product
         </Button>
       </section>

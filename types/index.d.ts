@@ -7,13 +7,19 @@ global {
     className: string;
   }
 
+  type ProductCategory =
+    | "men's clothing"
+    | "women's clothing"
+    | "jewelery"
+    | "electronics";
+
   declare interface Product {
     id: number;
     title: string;
     price: number;
     description: string;
-    category: string;
-    image: string;
+    category: ProductCategory;
+    image: string | null;
     rating: { rate: number; count: number };
   }
 
@@ -29,5 +35,17 @@ global {
   declare interface DeleteButtonProps {
     onClick: (productId: number) => void;
     productId: number;
+  }
+
+  declare interface AddProductParam {
+    title: string;
+    price: number;
+    description: string;
+    category: ProductCategory;
+  }
+
+  declare interface ProductFormProps {
+    type: "add" | "edit";
+    productId?: number
   }
 }

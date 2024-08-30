@@ -1,6 +1,5 @@
 "use client";
 
-import { deleteProduct, getProductsFromLocalStorage } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -8,6 +7,7 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import DeleteButton from "./DeleteButton";
 import LoaderIcon from "./Loader";
+import { deleteProduct, getProductsFromLocalStorage } from "@/lib/utils";
 
 const ProductDetail = ({ productId }: ProductDetailProps) => {
   const router = useRouter();

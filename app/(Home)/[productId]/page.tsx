@@ -3,11 +3,11 @@ import ProductDetail from "@/components/ProductDetail";
 const DetailsPage = ({
   params: { productId },
 }: {
-  params: { productId: number };
+  params: { productId: string };
 }) => {
   return (
-    <main className="p-6 flex md:items-center">
-      <ProductDetail productId={productId} />
+    <main className="p-6 flex items-center justify-center">
+      <ProductDetail productId={+productId} />
     </main>
   );
 };
