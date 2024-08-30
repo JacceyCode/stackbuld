@@ -25,8 +25,8 @@ const ProductCard = ({
 
       <section className="bg-white rounded-b-md p-2 space-y-4 justify-between flex flex-col">
         <section className="flex items-end justify-between gap-4">
-          <h3 className="font-medium text-lg">
-            {title.slice(0, 8) || "Product name"}
+          <h3 className="font-medium text-lg capitalize">
+            {title.slice(0, 15) || "Product name"}
           </h3>
           <p className="font-bold text-xl">${price || "0.00"}</p>
         </section>

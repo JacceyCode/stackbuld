@@ -49,7 +49,7 @@ const ProductContainer = () => {
 
   return (
     <section className="space-y-6 flex flex-col items-center">
-      <section className="self-start">
+      <section className="self-end">
         <FilteredProductButton setCategory={setCategory} />
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
