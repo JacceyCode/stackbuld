@@ -1,4 +1,4 @@
-import { deleteProduct } from "@/lib/utils";
+import { deleteProduct, filterProductsByCategory } from "@/lib/utils";
 import Image from "next/image";
 import Button from "./Button";
 import DeleteButton from "./DeleteButton";
@@ -9,6 +9,7 @@ const ProductCard = ({
   price,
   title,
   setProducts,
+  category,
 }: ProductCardProps) => {
   return (
     <section className="bg-background2 rounded-md shadow-md shadow-background w-full justify-between flex flex-col max-w-96 border-background2">
@@ -48,7 +49,10 @@ const ProductCard = ({
 
             <DeleteButton
               onClick={async () => {
-                const newProducts = await deleteProduct(id);
+                await deleteProduct(id);
+
+                const newProducts = await filterProductsByCategory(category);
+
                 setProducts(newProducts!);
               }}
               productId={id}

@@ -22,8 +22,6 @@ export const deleteProduct = async (id: number) => {
     const newProducts = products.filter((product) => product.id !== id);
 
     saveProductsToLocalStorage(newProducts);
-
-    return newProducts;
   }
 };
 
@@ -65,5 +63,21 @@ export const editProduct = async (product: Product) => {
     }
 
     saveProductsToLocalStorage(products);
+  }
+};
+
+export const filterProductsByCategory = async (category: string) => {
+  const products: Product[] = await getProductsFromLocalStorage();
+
+  if (!products) return;
+
+  if (category && category !== "all") {
+    const filteredProducts = products.filter(
+      (product) => product.category === category
+    );
+
+    return filteredProducts.reverse();
+  } else {
+    return products.reverse();
   }
 };

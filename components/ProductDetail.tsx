@@ -29,8 +29,8 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
   if (!data) return <LoaderIcon />;
 
   return (
-    <section className="flex flex-col md:flex-row p-4 items-center bg-background2 rounded-md shadow-black shadow-lg gap-6 md:h-[30rem]">
-      <section className="relative size-60 aspect-video md:size-80 rounded-md md:basis-2/5">
+    <section className="flex flex-col sm:flex-row p-4 items-center bg-background2 rounded-md shadow-black shadow-lg gap-6 sm:h-[30rem]">
+      <section className="relative size-60 aspect-video sm:size-80 rounded-md sm:basis-2/5">
         <Image
           src={data.image || "/logo.png"}
           fill
@@ -39,7 +39,7 @@ const ProductDetail = ({ productId }: ProductDetailProps) => {
         />
       </section>
 
-      <section className="flex flex-col md:basis-3/5 gap-4">
+      <section className="flex flex-col sm:basis-3/5 gap-4">
         <h1 className="font-semibold text-xl">{data.title}</h1>
 
         <section className="flex items-center justify-between">

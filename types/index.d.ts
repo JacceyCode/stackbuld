@@ -26,6 +26,7 @@ global {
   declare interface ProductCardProps
     extends Pick<Product, "id" | "price" | "image" | "title"> {
     setProducts: Dispatch<SetStateAction<Product[]>>;
+    category: string;
   }
 
   declare interface ProductDetailProps {
@@ -46,6 +47,10 @@ global {
 
   declare interface ProductFormProps {
     type: "add" | "edit";
-    productId?: number
+    productId?: number;
+  }
+
+  declare interface FilterProductButtonProp {
+    setCategory: Dispatch<SetStateAction<string>>;
   }
 }
