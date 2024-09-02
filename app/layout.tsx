@@ -35,7 +35,7 @@ export default function RootLayout({
       </Head>
       <body
         className={cn(
-          "bg-background max-w-screen-2xl mx-auto",
+          "bg-background antialiased max-w-screen-2xl mx-auto",
           montserrat.className
         )}
       >

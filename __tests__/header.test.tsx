@@ -28,9 +28,20 @@ describe("Header Component", () => {
 
   // 4. Test for add product button
   test("Displays Add Product Button", () => {
-    const addProduct = screen.getByRole("button");
+    const addProduct = screen.getByRole("link", { name: /add product/i });
 
     expect(addProduct).toBeInTheDocument();
-    expect(addProduct).toHaveTextContent(/add product/i);
+    expect(addProduct).toHaveAttribute("href", "/add");
+  });
+
+  // 5. Test for link with href tag
+  test("Link to have href that leads to home page and wraps the logo", () => {
+    // link
+    const link = screen.getByRole("link", { name: /logo/i });
+    expect(link).toHaveAttribute("href", "/");
+
+    // logo
+    const logo = screen.getByAltText(/logo/i);
+    expect(link).toContainElement(logo);
   });
 });

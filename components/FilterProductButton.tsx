@@ -29,7 +29,7 @@ const FilteredProductButton = ({ setCategory }: FilterProductButtonProp) => {
           Female
         </SelectItem>
         <SelectItem className="hover:bg-white rounded-md" value="jewelery">
-          Jewelery
+          Jewelry
         </SelectItem>
         <SelectItem className="hover:bg-white rounded-md" value="electronics">
           Electronics
